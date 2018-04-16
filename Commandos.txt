@@ -21,6 +21,9 @@ git checkout nomearquivo // retorna o arquivo para o ultimo estado se estiver ma
 
 git reset --hard // retorna os arquivos para o ultimo estado se estiver mapeado ou seja tiver sido add
 
+git clean -f // reseta e apaga arquivos que não foram traceados ou ados add  
+
+git clean -f -n // lista  arquivos que não foram traceados ou ados add e serao apagados outras opcoes com -i  
 
 
 
