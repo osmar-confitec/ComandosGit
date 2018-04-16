@@ -1,0 +1,25 @@
+
+// configuracao de usuario e email da maquina 
+git config --global user.name // visualiza os usuarios da maquina colocando o valor é setado o valor 
+git config --global user.email // visualiza os emails  da maquina colocando o email é setado email
+git config --global --list     // lista todas as configurações da maquina 
+
+git init // inicia um repositorio git 
+
+git status // visualiza os arquivos e os status deles no git e mostra a branch atual 
+
+git add arquivo ou git add --all todos // Esse commando faz com que o arquivo seja rastreado por um arquivo ou all todos  
+
+git commit -m "Primeiro commit" // esse comando realiza o commit das alterações do git local 
+
+git checkout 3059754e2820b80787f3f31ea8e76b6c87e559fd// volta o estado do commit para esse estado e desmarca como HEAD 
+que é o último estado 
+
+git checkout master // retorna ao último commit e estado da branch que é um estado de HEAD
+
+git checkout nomearquivo // retorna o arquivo para o ultimo estado se estiver mapeado ou seja tiver sido add
+
+jijijiji
+
+
+ 
