@@ -19,7 +19,12 @@ git checkout master // retorna ao último commit e estado da branch que é um esta
 
 git checkout nomearquivo // retorna o arquivo para o ultimo estado se estiver mapeado ou seja tiver sido add
 
-jijijiji
+git reset --hard // retorna os arquivos para o ultimo estado se estiver mapeado ou seja tiver sido add
+
+
+
+
+
 
 
  
