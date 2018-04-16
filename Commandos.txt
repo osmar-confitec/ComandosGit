@@ -23,7 +23,9 @@ git reset --hard // retorna os arquivos para o ultimo estado se estiver mapeado 
 
 git clean -f // reseta e apaga arquivos que não foram traceados ou ados add  
 
-git clean -f -n // lista  arquivos que não foram traceados ou ados add e serao apagados outras opcoes com -i  
+git clean -f -n // lista  arquivos que não foram traceados ou ados add e serao apagados outras opcoes com -i
+
+git rm -r --cached . // remove todos os itens do rastreamento do git  
 
 
 
