@@ -41,7 +41,10 @@ listar branchs git branch
 
 mudar branch git checkout nome branch
 
-// para enviar dados para o servidor criando uma branch faca o comando de uma pasta clonada =>  git push -u origin nome branch   
+// para enviar dados para o servidor criando uma branch no servidor apos cria la localmente 
+   na pasta dado clone faca o comando de uma pasta clonada =>  git push -u origin nome branch para rastrear -u se nao quiser rastrer tira -u   
+
+
 
 
 
