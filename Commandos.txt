@@ -29,6 +29,8 @@ git rm -r --cached . // remove todos os itens do rastreamento do git
 
 git clone www.url.com.br // clona da web para o repositorio local rastreando na web e local
 
+para ignorar um arquivo utilize o arquivo com a extensao .gitignore. ponto no final
+
 
 
 
