@@ -27,6 +27,8 @@ git clean -f -n // lista  arquivos que não foram traceados ou ados add e serao a
 
 git rm -r --cached . // remove todos os itens do rastreamento do git  
 
+git clone www.url.com.br // clona da web para o repositorio local rastreando na web e local
+
 
 
 
