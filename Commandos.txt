@@ -29,7 +29,19 @@ git rm -r --cached . // remove todos os itens do rastreamento do git
 
 git clone www.url.com.br // clona da web para o repositorio local rastreando na web e local
 
-para ignorar um arquivo utilize o arquivo com a extensao .gitignore. ponto no final
+para ignorar um arquivo utilize o arquivo com a extensao .gitignore. ponto no final e dentro do arquivo coloque as extensoes para igorar 
+
+git push envia todas as alteracoes para o servidor.
+
+git pull baixando a ultima versao do servidor 
+
+criar branchs // git branch nome branch 
+
+listar branchs git branch 
+
+mudar branch git checkout nome branch
+
+// para enviar dados para o servidor criando uma branch faca o comando de uma pasta clonada =>  git push -u origin nome branch   
 
 
 
