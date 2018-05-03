@@ -47,7 +47,25 @@ mudar branch git checkout nome branch
 
 para criar um rastreio de uma branch on-line de um repositorio git criado localmente faça 
 git remote add origin ssh://example.com/var/git/myapp.git
-git push origin master	  
+git push origin master
+
+criar uma branch e seta-la a partir da que vc está git checkout -b "Nome da branch"	  
+
+
+git branch -d "nome brnasch " deleta todas as branchs locais 
+
+listar diretorios remotos git branch -r
+
+git branch lista todas as branchs 
+
+git branch -a lista as branchs locais e remotas
+
+git checkout -b casa cria a branch e seta a branch criada (sempre criando em cima da branch setada)
+
+git push origin casa cria a branch remotamente mas não seta a branch na local
+
+git push -u origin casa  seta a branch para atualizar no site 
+
 
 
 
