@@ -1,8 +1,8 @@
 
 // configuracao de usuario e email da maquina 
-git config --global user.name // visualiza os usuarios da maquina colocando o valor � setado o valor 
-git config --global user.email // visualiza os emails  da maquina colocando o email � setado email
-git config --global --list     // lista todas as configura��es da maquina 
+git config --global user.name // visualiza os usuarios da maquina colocando o valor � setado o valor 
+git config --global user.email // visualiza os emails  da maquina colocando o email � setado email
+git config --global --list     // lista todas as configura��es da maquina 
 
 git init // inicia um repositorio git 
 
@@ -10,20 +10,20 @@ git status // visualiza os arquivos e os status deles no git e mostra a branch a
 
 git add arquivo ou git add --all todos // Esse commando faz com que o arquivo seja rastreado por um arquivo ou all todos  
 
-git commit -m "Primeiro commit" // esse comando realiza o commit das altera��es do git local 
+git commit -m "Primeiro commit" // esse comando realiza o commit das altera��es do git local 
 
 git checkout 3059754e2820b80787f3f31ea8e76b6c87e559fd// volta o estado do commit para esse estado e desmarca como HEAD 
-que � o �ltimo estado 
+que � o �ltimo estado 
 
-git checkout master // retorna ao �ltimo commit e estado da branch que � um estado de HEAD
+git checkout master // retorna ao �ltimo commit e estado da branch que � um estado de HEAD
 
 git checkout nomearquivo // retorna o arquivo para o ultimo estado se estiver mapeado ou seja tiver sido add
 
 git reset --hard // retorna os arquivos para o ultimo estado se estiver mapeado ou seja tiver sido add
 
-git clean -f // reseta e apaga arquivos que n�o foram traceados ou ados add  
+git clean -f // reseta e apaga arquivos que n�o foram traceados ou ados add  
 
-git clean -f -n // lista  arquivos que n�o foram traceados ou ados add e serao apagados outras opcoes com -i
+git clean -f -n // lista  arquivos que n�o foram traceados ou ados add e serao apagados outras opcoes com -i
 
 git rm -r --cached . // remove todos os itens do rastreamento do git  
 
@@ -45,11 +45,11 @@ mudar branch git checkout nome branch
    na pasta dado clone faca o comando de uma pasta clonada =>  git push -u origin nome branch para rastrear -u se nao quiser rastrer tira -u 
    lembrando que a branch deve ser criada no diretorio da pasta clonada 
 
-para criar um rastreio de uma branch on-line de um repositorio git criado localmente fa�a 
+para criar um rastreio de uma branch on-line de um repositorio git criado localmente fa�a 
 git remote add origin ssh://example.com/var/git/myapp.git
 git push origin master
 
-criar uma branch e seta-la a partir da que vc est� git checkout -b "Nome da branch"	  
+criar uma branch e seta-la a partir da que vc est� git checkout -b "Nome da branch"	  
 
 
 git branch -d "nome brnasch " deleta todas as branchs locais 
@@ -62,9 +62,586 @@ git branch -a lista as branchs locais e remotas
 
 git checkout -b casa cria a branch e seta a branch criada (sempre criando em cima da branch setada)
 
-git push origin casa cria a branch remotamente mas n�o seta a branch na local
+git push origin casa cria a branch remotamente mas n�o seta a branch na local
 
 git push -u origin casa  seta a branch para atualizar no site 
+
+
+A primeira coisa que você deve fazer quando instalar o Git é definir o seu nome de usuário e endereço de e-mail. Isso é importante porque todos os commits no Git utilizam essas informações, e está imutavelmente anexado nos commits que você realiza:
+
+git config --global user.name "John Doe" 
+git config --global user.email johndoe@example.com
+Relembrando, você só precisará fazer isso uma vez caso passe a opção --global, pois o Git sempre usará essa informação para qualquer coisa que você faça nesse sistema. Caso você queira sobrepor estas com um nome ou endereço de e-mail diferentes para projetos específicos, você pode executar o comando sem a opção --global quando estiver no próprio projeto.
+
+git help
+Obter Ajuda
+
+Se você precisar de ajuda ao usar Git, existem três maneiras de obter a ajuda para qualquer um dos comandos Git:
+
+git help {comando} 
+git {comando} --help 
+man git- {comando}
+
+Criando o projeto
+git init
+Repositório Git
+
+Você pode obter um projeto Git utilizando duas formas principais. A primeira faz uso de um projeto ou diretório existente e o importa para o Git. A segunda clona um repositório Git existente a partir de outro servidor.
+
+
+Inicializando um Repositório em um Diretório Existente
+Caso você esteja iniciando o monitoramento de um projeto existente com Git, você precisa ir para o diretório do projeto e digitar
+
+git init
+Isso cria um novo subdiretório chamado .git que contem todos os arquivos necessários de seu repositório — um esqueleto de repositório Git. Neste ponto, nada em seu projeto é monitorado.
+
+
+Primeira versão
+Caso você queira começar a controlar o versionamento dos arquivos existentes (diferente de um diretório vazio), você provavelmente deve começar a monitorar esses arquivos e fazer um commit inicial. Você pode realizar isso com poucos comandos
+
+touch .gitignore 
+git add .gitignore 
+git commit -m "Versão inicial do projeto"
+Bem, nós iremos repassar esses comandos em um momento. Neste ponto, você tem um repositório Git com arquivos monitorados e um commit inicial.
+
+git clone
+Clonando um Repositório Existente
+
+Você clona um repositório com git clone [url]. Por exemplo, caso você queria clonar a biblioteca Git do Ruby chamada Grit, você pode fazê-lo da seguinte forma:
+
+git clone git://github.com/schacon/grit.git
+Se você entrar no novo diretório grit, você verá todos os arquivos do projeto nele, pronto para serem editados ou utilizados. Caso você queira clonar o repositório em um diretório diferente de grit, é possível especificar esse diretório utilizando a opção abaixo:
+
+git clone git://github.com/schacon/grit.git mygrit
+Este comando faz exatamente a mesma coisa que o anterior, mas o diretório alvo será chamado mygrit.
+
+
+Básico
+git add
+Gravando Alterações
+
+Quando um repositório é inicialmente clonado, todos os seus arquivos estarão monitorados e inalterados porque você simplesmente os obteve e ainda não os editou. Conforme você edita esses arquivos, o Git passa a vê-los como modificados, porque você os alterou desde seu último commit. Você seleciona esses arquivos modificados e então faz o commit de todas as alterações selecionadas e o ciclo se repete.
+
+Monitorando Novos Arquivos
+Para passar a monitorar um novo arquivo, use o comando git add. Para monitorar o arquivo README, você pode rodar isso:
+
+git add README
+Se você rodar o comando git status, você pode ver que o seu arquivo README agora está sendo monitorado. Os arquivos monitorados serão os que faram parte do commit.
+
+git status
+Verificando o Status
+
+A principal ferramenta utilizada para determinar quais arquivos estão em quais estados é o comando:
+
+git status
+O comando lhe mostra em qual branch você se encontra. Vamos dizer que você adicione um novo arquivo em seu projeto, um simples arquivo README. Caso o arquivo não exista e você execute git status, você verá o arquivo não monitorado dessa forma:
+
+# On branch master 
+# Untracked files: 
+# (use "git add {file}..." to include in what will be committed) 
+# 
+# README 
+nothing added to commit but untracked files present (use "git add" to track)
+Você pode ver que o seu novo arquivo README não está sendo monitorado, pois está listado sob o cabeçalho "Untracked files" na saída do comando status. Não monitorado significa basicamente que o Git está vendo um arquivo que não existia na última captura (commit); o Git não vai incluí-lo nas suas capturas de commit até que você o diga explicitamente que assim o faça. Ele faz isso para que você não inclua acidentalmente arquivos binários gerados, ou outros arquivos que você não têm a intenção de incluir. Digamos, que você queira incluir o arquivo README, portanto vamos começar a monitorar este arquivo.
+
+git diff
+Verificando Mudanças
+
+Se o comando git status for muito vago — você quer saber exatamente o que você alterou, não apenas quais arquivos foram alterados — você pode utilizar o comando.
+
+git diff
+Apesar do comando git status responder essas duas perguntas de maneira geral, o git diff mostra as linhas exatas que foram adicionadas e removidas — o patch, por assim dizer. 
+Se você quer ver o que selecionou que irá no seu próximo commit, pode utilizar:
+
+git diff --cached
+git commit
+Commits
+
+Armazena o conteúdo atual do índice em um novo commit, juntamente com uma mensagem de registro do usuário que descreve as mudanças. 
+Se usa o commit depois de já ter feito o git add, para fazer o commit:
+
+git commit -m "Mensagem"
+Para commitar também os arquivos versionados mesmo não estando no Stage basta adicionar o parâmetro -a
+
+git commit -a -m "Mensagem"
+Refazendo commit quando esquecer de adicionar um arquivo no Stage:
+
+git commit -m "Mensagem" --amend
+O amend é destrutivo e só deve ser utilizado antes do commit ter sido enviado ao servidor remoto.
+
+git reset
+Desfazendo Coisas
+
+Em qualquer fase, você pode querer desfazer alguma coisa. Aqui, veremos algumas ferramentas básicas para desfazer modificações que você fez. Cuidado, porque você não pode desfazer algumas dessas mudanças. Essa é uma das poucas áreas no Git onde você pode perder algum trabalho se fizer errado. 
+Para voltar ao último commit:
+
+git reset --hard HEAD~1
+Para voltar ao último commit e mantém os últimos arquivos no Stage:
+
+git reset --soft HEAD~1
+Volta para o commit com a hash XXXXXXXXXXX:
+
+git reset --hard XXXXXXXXXXX
+Recuperando commit apagado pelo git reset
+Para visualizar os hashs
+
+git reflog
+E para aplicar:
+
+git merge {hash}
+git rm
+Removendo Arquivos
+
+Para remover um arquivo do Git, você tem que removê-lo dos arquivos que estão sendo monitorados (mais precisamente, removê-lo da sua área de seleção) e então fazer o commit. O comando git rm faz isso e também remove o arquivo do seu diretório para você não ver ele como arquivo não monitorado (untracked file) na próxima vez.
+
+git rm -f {arquivo}
+Se você modificou o arquivo e já o adicionou na área de seleção, você deve forçar a remoção com a opção -f. Essa é uma funcionalidade de segurança para prevenir remoções acidentais de dados que ainda não foram gravados em um snapshot e não podem ser recuperados do Git.
+
+git mv
+Movendo Arquivos
+
+Diferente de muitos sistemas VCS, o Git não monitora explicitamente arquivos movidos. 
+É um pouco confuso que o Git tenha um comando mv. Se você quiser renomear um arquivo no Git, você pode fazer isso com
+
+git mv arquivo_origem arquivo_destino
+e funciona. De fato, se você fizer algo desse tipo e consultar o status, você verá que o Git considera que o arquivo foi renomeado.
+
+No entanto, isso é equivalente a rodar algo como:
+
+mv README.txt README 
+git rm README.txt 
+git add README
+O Git descobre que o arquivo foi renomeado implicitamente, então ele não se importa se você renomeou por este caminho ou com o comando mv. A única diferença real é que o comando mv é mais conveniente, executa três passos de uma vez. O mais importante, você pode usar qualquer ferramenta para renomear um arquivo, e usar add/rm depois, antes de consolidar com o commit.
+
+
+Branch e Merge
+git branch
+Branch Básico
+
+Um branch no Git é simplesmente um leve ponteiro móvel para um dos commits. O nome do branch padrão no Git é master. Como você inicialmente fez commits, você tem um branch principal (master branch) que aponta para o último commit que você fez. Cada vez que você faz um commit ele avança automaticamente. 
+O que acontece se você criar um novo branch? Bem, isso cria um novo ponteiro para que você possa se mover. Vamos dizer que você crie um novo branch chamado testing. Você faz isso com o comando git branch:
+
+git branch testing
+Isso cria um novo ponteiro para o mesmo commit em que você está no momento. 
+Para mudar para um branch existente, você executa o comando git checkout. Vamos mudar para o novo branch testing:
+
+git checkout testing
+Isto move o HEAD para apontar para o branch testing.
+
+git checkout
+Mudando de Branch
+
+Com o git checkout você pode mudar de branch, caso a branch ainda não exista você poderá passar o parâmetro -b para criar.
+
+git checkout -b {nome_da_branch}
+git merge
+Merge Básico
+
+Suponha que você decidiu que o trabalho na tarefa #53 está completo e pronto para ser feito o merge no branch master. Para fazer isso, você fará o merge do seu branch iss53, bem como o merge do branch hotfix de antes. Tudo que você tem a fazer é executar o checkout do branch para onde deseja fazer o merge e então rodar o comando git merge:
+
+git checkout master 
+git merge iss53
+git mergetool
+Resolvendo conflitos
+
+Se você quer usar uma ferramenta gráfica para resolver esses problemas, você pode executar o seguinte comando que abre uma ferramenta visual de merge adequada e percorre os conflitos.
+
+git mergetool
+Arquivos Temporários
+git mergetool cria * .orig arquivos de backup ao resolver fusões. Estes são seguros para remover uma vez que um arquivo foi fundida e sua git mergetool sessão foi concluída.
+
+git log
+Histórico de Commits
+
+Depois que você tiver criado vários commits, ou se clonou um repositório com um histórico de commits existente, você provavelmente vai querer ver o que aconteceu. A ferramente mais básica e poderosa para fazer isso é o comando:
+
+git log
+git stash
+Fazendo Stash
+
+Muitas vezes, quando você está trabalhando em uma parte do seu projeto, as coisas estão em um estado confuso e você quer mudar de branch por um tempo para trabalhar em outra coisa. O problema é, você não quer fazer o commit de um trabalho incompleto somente para voltar a ele mais tarde. A resposta para esse problema é o comando git stash. 
+Você quer mudar de branch, mas não quer fazer o commit do que você ainda está trabalhando; você irá fazer o stash das modificações. Para fazer um novo stash na sua pilha, execute:
+
+git stash
+Seu diretório de trabalho estará limpo. 
+Neste momento, você pode facilmente mudar de branch e trabalhar em outra coisa; suas alterações estão armazenadas na sua pilha. Para ver as stashes que você guardou, você pode usar
+
+git stash list
+Você pode aplicar aquele que acabou de fazer o stash com o comando mostrado na saída de ajuda do comando stash original: git stash apply. Se você quer aplicar um dos stashes mais antigos, você pode especificá-lo, assim: git stash apply stash@{2}. Se você não especificar um stash, Git assume que é o stash mais recente e tenta aplicá-lo.
+
+git tag
+Tagging
+
+Git tem a habilidade de criar tags em pontos específicos na história do código como pontos importantes. Geralmente as pessoas usam esta funcionalidade para marcar pontos de release (v1.0, e por aí vai). Nesta seção, você aprenderá como listar as tags disponíveis, como criar novas tags, e quais são os tipos diferentes de tags. 
+Para listar as tags execute:
+
+git tag
+Para criar uma tag basta executar o seguinte comando, caso não queira criar a tag anotada, somente retire os parâmetros -a e -m.
+
+git tag -a v1.4 -m 'my version 1.4'
+
+Compartilhar e Atualizar Projetos
+git fetch
+Fazendo o Fetch
+
+Para pegar dados dos seus projetos remotos, você pode executar:
+
+git fetch origin
+Esse comando vai até o projeto remoto e pega todos os dados que você ainda não tem. Depois de fazer isso, você deve ter referências para todos os branches desse remoto, onde você pode fazer o merge ou inspecionar a qualquer momento.
+
+git pull
+Atualizando local
+
+Incorpora as alterações de um repositório remoto no branch atual. Em seu modo padrão, git pull é uma abreviação para git fetch seguido de git merge FETCH_HEAD. Por exemplo, se eu estiver em uma branch chamada develop e quiser atualizar caso haja atualizações remotamente:
+
+git pull origin develop
+git push
+Empurrando seus commits
+
+O git push é o comando em que você transfere commits a partir do seu repositório local para um repositório remoto. É a contrapartida do git fetch, que busca importações e comprometem as agências locais, utilizando o git push as exportações comprometem as filiais remotas. Para fazer isso, você executa git push [nome_do_repositório_remoto] [nome_da_sua_branch_local], que vai tentar fazer que o [nome_do_repositório_remoto] receba a sua branch [nome_da_sua_branch_local] contendo todos seus commits com alterações. Por exemplo:
+
+git push origin develop
+git remote
+git submodule
+
+Inspeção e Comparação
+git show
+git log
+git diff
+git shortlog
+git describe
+
+Pacotes
+git apply
+git cherry-pick
+git diff
+git rebase
+git revert
+
+Debugando
+git bisect
+git blame
+git grep
+
+Email
+git am
+git apply
+git format-patch
+git send-email
+git request-pull
+
+Sistemas Externos
+git svn
+git fast-import
+
+Administração
+git clean
+git gc
+git fsck
+git reflog
+git filter-branch
+git instaweb
+git archive
+
+Servidor
+git daemon
+git update-server-info
+
+Canalização de Código
+git cat-file
+git commit-tree
+git count-objects
+git diff-index
+git for-each-ref
+git hash-object
+git merge-base
+git read-tree
+git rev-list
+git rev-parse
+git show-ref
+git symbolic-ref
+git update-index
+git update-ref
+git verify-pack
+git write-tree
+
+
+
+#GIT
+
+Estados
+Modificado (modified);
+Preparado (staged/index)
+Consolidado (comitted);
+Ajuda
+Geral
+git help
+Comando específico
+git help add
+git help commit
+git help <qualquer_comando_git>
+Configuração
+Geral
+As configurações do GIT são armazenadas no arquivo .gitconfig localizado dentro do diretório do usuário do Sistema Operacional (Ex.: Windows: C:\Users\Documents and Settings\Leonardo ou *nix /home/leonardo).
+
+As configurações realizadas através dos comandos abaixo serão incluídas no arquivo citado acima.
+
+Setar usuário
+git config --global user.name "Leonardo Comelli"
+Setar email
+git config --global user.email leonardo@software-ltda.com.br
+Setar editor
+git config --global core.editor vim
+Setar ferramenta de merge
+git config --global merge.tool vimdiff
+Setar arquivos a serem ignorados
+git config --global core.excludesfile ~/.gitignore
+Listar configurações
+git config --list
+Ignorar Arquivos
+Os nomes de arquivos/diretórios ou extensões de arquivos listados no arquivo .gitignore não serão adicionados em um repositório. Existem dois arquivos .gitignore, são eles:
+
+Geral: Normalmente armazenado no diretório do usuário do Sistema Operacional. O arquivo que possui a lista dos arquivos/diretórios a serem ignorados por todos os repositórios deverá ser declarado conforme citado acima. O arquivo não precisa ter o nome de .gitignore.
+
+Por repositório: Deve ser armazenado no diretório do repositório e deve conter a lista dos arquivos/diretórios que devem ser ignorados apenas para o repositório específico.
+
+Repositório Local
+Criar novo repositório
+git init
+Verificar estado dos arquivos/diretórios
+git status
+Adicionar arquivo/diretório (staged area)
+Adicionar um arquivo em específico
+git add meu_arquivo.txt
+Adicionar um diretório em específico
+git add meu_diretorio
+Adicionar todos os arquivos/diretórios
+git add .	
+Adicionar um arquivo que esta listado no .gitignore (geral ou do repositório)
+git add -f arquivo_no_gitignore.txt
+Comitar arquivo/diretório
+Comitar um arquivo
+git commit meu_arquivo.txt
+Comitar vários arquivos
+git commit meu_arquivo.txt meu_outro_arquivo.txt
+Comitar informando mensagem
+git commit meuarquivo.txt -m "minha mensagem de commit"
+Remover arquivo/diretório
+Remover arquivo
+git rm meu_arquivo.txt
+Remover diretório
+git rm -r diretorio
+Visualizar hitórico
+Exibir histórico
+git log
+Exibir histórico com diff das duas últimas alterações
+git log -p -2
+Exibir resumo do histórico (hash completa, autor, data, comentário e qtde de alterações (+/-))
+git log --stat
+Exibir informações resumidas em uma linha (hash completa e comentário)
+git log --pretty=oneline
+Exibir histórico com formatação específica (hash abreviada, autor, data e comentário)
+git log --pretty=format:"%h - %an, %ar : %s"
+%h: Abreviação do hash;
+%an: Nome do autor;
+%ar: Data;
+%s: Comentário.
+Verifique as demais opções de formatação no Git Book
+
+Exibir histório de um arquivo específico
+git log -- <caminho_do_arquivo>
+Exibir histórico de um arquivo específico que contêm uma determinada palavra
+git log --summary -S<palavra> [<caminho_do_arquivo>]
+Exibir histórico modificação de um arquivo
+git log --diff-filter=M -- <caminho_do_arquivo>
+O pode ser substituido por: Adicionado (A), Copiado (C), Apagado (D), Modificado (M), Renomeado (R), entre outros.
+Exibir histório de um determinado autor
+git log --author=usuario
+Exibir revisão e autor da última modificação de uma bloco de linhas
+git blame -L 12,22 meu_arquivo.txt 
+Desfazendo operações
+Desfazendo alteração local (working directory)
+Este comando deve ser utilizando enquanto o arquivo não foi adicionado na staged area.
+
+git checkout -- meu_arquivo.txt
+Desfazendo alteração local (staging area)
+Este comando deve ser utilizando quando o arquivo já foi adicionado na staged area.
+
+git reset HEAD meu_arquivo.txt
+Se o resultado abaixo for exibido, o comando reset não alterou o diretório de trabalho.
+
+Unstaged changes after reset:
+M	meu_arquivo.txt
+A alteração do diretório pode ser realizada através do comando abaixo:
+
+git checkout meu_arquivo.txt
+Repositório Remoto
+Exibir os repositórios remotos
+git remote
+
+git remote -v
+Vincular repositório local com um repositório remoto
+git remote add origin git@github.com:leocomelli/curso-git.git
+Exibir informações dos repositórios remotos
+git remote show origin
+Renomear um repositório remoto
+git remote rename origin curso-git
+Desvincular um repositório remoto
+git remote rm curso-git
+Enviar arquivos/diretórios para o repositório remoto
+O primeiro push de um repositório deve conter o nome do repositório remoto e o branch.
+
+git push -u origin master
+Os demais pushes não precisam dessa informação
+
+git push
+Atualizar repositório local de acordo com o repositório remoto
+Atualizar os arquivos no branch atual
+git pull
+Buscar as alterações, mas não aplica-las no branch atual
+git fecth
+Clonar um repositório remoto já existente
+git clone git@github.com:leocomelli/curso-git.git
+Tags
+Criando uma tag leve
+git tag vs-1.1
+Criando uma tag anotada
+git tag -a vs-1.1 -m "Minha versão 1.1"
+Criando uma tag assinada
+Para criar uma tag assinada é necessário uma chave privada (GNU Privacy Guard - GPG).
+
+git tag -s vs-1.1 -m "Minha tag assinada 1.1"
+Criando tag a partir de um commit (hash)
+git tag -a vs-1.2 9fceb02
+Criando tags no repositório remoto
+git push origin vs-1.2
+Criando todas as tags locais no repositório remoto
+git push origin --tags
+Branches
+O master é o branch principal do GIT.
+
+O HEAD é um ponteiro especial que indica qual é o branch atual. Por padrão, o HEAD aponta para o branch principal, o master.
+
+Criando um novo branch
+git branch bug-123
+Trocando para um branch existente
+git checkout bug-123
+Neste caso, o ponteiro principal HEAD esta apontando para o branch chamado bug-123.
+
+Criar um novo branch e trocar
+git checkout -b bug-456
+Voltar para o branch principal (master)
+git checkout master
+Resolver merge entre os branches
+git merge bug-123
+Para realizar o merge, é necessário estar no branch que deverá receber as alterações. O merge pode automático ou manual. O merge automático será feito em arquivos textos que não sofreram alterações nas mesmas linhas, já o merge manual será feito em arquivos textos que sofreram alterações nas mesmas linhas.
+
+A mensagem indicando um merge manual será:
+
+Automerging meu_arquivo.txt
+CONFLICT (content): Merge conflict in meu_arquivo.txt
+Automatic merge failed; fix conflicts and then commit the result.
+Apagando um branch
+git branch -d bug-123
+Listar branches
+Listar branches
+git branch
+Listar branches com informações dos últimos commits
+git branch -v
+Listar branches que já foram fundidos (merged) com o master
+git branch --merged
+Listar branches que não foram fundidos (merged) com o master
+git branch --no-merged
+Criando branches no repositório remoto
+Criando um branch remoto com o mesmo nome
+git push origin bug-123
+Criando um branch remoto com nome diferente
+git push origin bug-123:new-branch
+Baixar um branch remoto para edição
+git checkout -b bug-123 origin/bug-123
+Apagar branch remoto
+git push origin:bug-123
+Rebasing
+Fazendo o rebase entre um o branch bug-123 e o master.
+
+git checkout experiment
+
+git rebase master
+Mais informações e explicações sobre o Rebasing
+
+###Stash
+
+Para alternar entre um branch e outro é necessário fazer o commit das alterações atuais para depois trocar para um outro branch. Se existir a necessidade de realizar a troca sem fazer o commit é possível criar um stash. O Stash como se fosse um branch temporário que contem apenas as alterações ainda não commitadas.
+
+Criar um stash
+git stash
+Listar stashes
+git stash list
+Voltar para o último stash
+git stash apply
+Voltar para um stash específico
+git stash apply stash@{2}
+Onde 2 é o indíce do stash desejado.
+
+Criar um branch a partir de um stash
+git stash branch meu_branch
+Reescrevendo o histórico
+Alterando mensagens de commit
+git commit --amend -m "Minha nova mensagem"
+Alterar últimos commits
+Alterando os três últimos commits
+
+git rebase -i HEAD~3
+O editor de texto será aberto com as linhas representando os três últimos commits.
+
+pick f7f3f6d changed my name a bit
+pick 310154e updated README formatting and added blame
+pick a5f4a0d added catfile
+Altere para edit os commits que deseja realizar alterações.
+
+edit f7f3f6d changed my name a bit
+pick 310154e updated README formatting and added blame
+pick a5f4a0d added catfile
+Feche o editor de texto.
+
+Digite o comando para alterar a mensagem do commit que foi marcado como edit.
+
+git commit –amend -m “Nova mensagem”
+Aplique a alteração
+
+git rebase --continue
+Atenção: É possível alterar a ordem dos commits ou remover um commit apenas mudando as linhas ou removendo.
+
+Juntando vários commits
+Seguir os mesmos passos acima, porém marcar os commtis que devem ser juntados com *squash
+
+Remover todo histórico de um arquivo
+git filter-branch --tree-filter 'rm -f passwords.txt' HEAD
+Bisect
+O bisect (pesquisa binária) é útil para encontrar um commit que esta gerando um bug ou uma inconsistência entre uma sequência de commits.
+
+Iniciar pequinsa binária
+git bisect start
+Marcar o commit atual como ruim
+git bisect bad
+Marcar o commit de uma tag que esta sem o bug/inconsistência
+git bisect good vs-1.1
+Marcar o commit como bom
+O GIT irá navegar entre os commits para ajudar a indentificar o commit que esta com o problema. Se o commit atual não estiver quebrado, então é necessário marca-lo como bom.
+
+git bisect good
+Marcar o commit como ruim
+Se o commit estiver com o problema, então ele deverá ser marcado como ruim.
+
+git bisect bad
+Finalizar a pesquisa binária
+Depois de encontrar o commit com problema, para retornar para o HEAD utilize:
+
+git bisect reset
+Contribuições
+Sinta-se a vontade para realizar adicionar mais informações ou realizar correções. Fork me!
+
+
 
 
 
