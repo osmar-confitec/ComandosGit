@@ -647,8 +647,8 @@ git init
 git remote add -t refspec remotename host:/dir.git
 git fetch
 
-
-
+//clonar a partir de uma branch remota 
+git clone -b develop https://github.com/osmar-confitec/Regex.git
 
 
 
