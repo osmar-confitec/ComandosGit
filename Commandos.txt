@@ -643,7 +643,9 @@ Sinta-se a vontade para realizar adicionar mais informações ou realizar corre�
 
 
 
-
+git init
+git remote add -t refspec remotename host:/dir.git
+git fetch
 
 
 
