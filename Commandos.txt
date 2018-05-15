@@ -661,6 +661,6 @@ git config --global --add difftool.kdiff3.trustExitCode false
 git mergetool para rodar 
 
 
-
+ git branch -u origin/dev
 git merge --abort is equivalent to git reset --merge when  MERGE_HEAD is present
  
