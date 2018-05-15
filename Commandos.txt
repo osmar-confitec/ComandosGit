@@ -662,5 +662,5 @@ git mergetool para rodar
 
 
 
-
+git merge --abort is equivalent to git reset --merge when  MERGE_HEAD is present
  
